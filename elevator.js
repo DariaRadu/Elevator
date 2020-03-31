@@ -39,7 +39,9 @@ module.exports = class Elevator {
     }
 
     sortFloorsQueue() {
-        const uniqueFloors = [...new Set(this.floorsQueue)];
+        let uniqueFloors = [...new Set(this.floorsQueue)];
+
+        uniqueFloors = uniqueFloors.filter(floor => floor <= this.maxFloor && floor >= this.minFloor);
 
         const floorsUnderCurrentFloor = uniqueFloors.filter((floor) => floor <= this.currentFloor).sort().reverse();
         const floorsAboveCurrentFloor = uniqueFloors.filter((floor) => floor > this.currentFloor).sort();
